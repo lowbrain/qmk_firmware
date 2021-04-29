@@ -46,7 +46,8 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
 - Docker Desktop 20.10.5
 
 ### コンパイル環境セットアップ手順
-1. `WLS2 Ubuntu-20.04`のコンソールにて以下コマンドを実行 （以下ユーザホームディレクトリを作業場所とした例）  
+1. `WLS2 Ubuntu-20.04`のコンソールにて以下コマンドを実行  
+（以下ユーザホームディレクトリを作業場所とした例）  
     ```sh
     cd ~/
     git clone --recurse-submodules https://github.com/lowbrain/qmk_firmware.git
@@ -54,7 +55,8 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
 
 ### QMK Custom Keymaps コンパイル手順
 
-1. `WLS2 Ubuntu-20.04`のコンソールにて以下コマンドを実行（以下ユーザホームディレクトリを作業場所とした例）
+1. `WLS2 Ubuntu-20.04`のコンソールにて以下コマンドを実行  
+（以下ユーザホームディレクトリを作業場所とした例）
 
     * ymd75/rev2:custom_jp  
         source:~/qmk_firmware/keyboards/ymd75/keymaps/custom_jp
@@ -77,5 +79,5 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
         util/docker_build.sh xd87:custom_jp
         ```
 
-2. `~/qmk_firmware`にファームウェアとしてのファイル`*.hex`が出力されるのでそのファイルを対象キーボードにフラッシュする。  
+2. `~/qmk_firmware`にファームウェアとしてのファイル`*.hex`が出力されるのでそのファイルを対象キーボードにフラッシュする。
 フラッシュの方法については、キーボードの仕様によるので省略する。
