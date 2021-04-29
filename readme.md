@@ -46,42 +46,36 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
 - Docker Desktop 20.10.5
 
 ### コンパイル環境セットアップ手順
-`WLS2 Ubuntu-20.04`のコンソールにて以下コマンドを実行 （以下ユーザホームディレクトリを作業場所とした例）  
-```sh
-cd ~/
-git clone --recurse-submodules https://github.com/lowbrain/qmk_firmware.git
-```
+1. `WLS2 Ubuntu-20.04`のコンソールにて以下コマンドを実行 （以下ユーザホームディレクトリを作業場所とした例）  
+    ```sh
+    cd ~/
+    git clone --recurse-submodules https://github.com/lowbrain/qmk_firmware.git
+    ```
 
 ### QMK Custom Keymaps コンパイル手順
 
-`WLS2 Ubuntu-20.04`のコンソールにて以下コマンドを実行（以下ユーザホームディレクトリを作業場所とした例）
+1. `WLS2 Ubuntu-20.04`のコンソールにて以下コマンドを実行（以下ユーザホームディレクトリを作業場所とした例）
 
-* ymd75/rev2:custom_jp  
-    source:~/qmk_firmware/keyboards/ymd75/keymaps/custom_jp
-    ```sh
-    cd ~/qmk_firmware
-    util/docker_build.sh ymd75/rev2:custom_jp
-    ```
+    * ymd75/rev2:custom_jp  
+        source:~/qmk_firmware/keyboards/ymd75/keymaps/custom_jp
+        ```sh
+        cd ~/qmk_firmware
+        util/docker_build.sh ymd75/rev2:custom_jp
+        ```
 
-* xd60/rev3:custom_jp  
-    source:~/qmk_firmware/keyboards/xd60/keymaps/custom_jp
-    ```sh
-    cd ~/qmk_firmware
-    util/docker_build.sh xd60/rev3:custom_jp
-    ```
+    * xd60/rev3:custom_jp  
+        source:~/qmk_firmware/keyboards/xd60/keymaps/custom_jp
+        ```sh
+        cd ~/qmk_firmware
+        util/docker_build.sh xd60/rev3:custom_jp
+        ```
 
-* xd87:custom_jp  
-    source:~/qmk_firmware/keyboards/xd87/keymaps/custom_jp
-    ```sh
-    cd ~/qmk_firmware
-    util/docker_build.sh xd87:custom_jp
-    ```
+    * xd87:custom_jp  
+        source:~/qmk_firmware/keyboards/xd87/keymaps/custom_jp
+        ```sh
+        cd ~/qmk_firmware
+        util/docker_build.sh xd87:custom_jp
+        ```
 
-※ キーボードへのファームウェアのフラッシュについては各キーボードの仕様にのっとり実施すること。
-
-### AnnePro2 Custom コンパイル手順
-
-* QMK Custom keymaps
-
-* AnnePro2-Shine
-
+2. `~/qmk_firmware`にファームウェアとしてのファイル`*.hex`が出力されるのでそのファイルを対象キーボードにフラッシュする。  
+フラッシュの方法については、キーボードの仕様によるので省略する。
