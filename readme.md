@@ -79,5 +79,12 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
         util/docker_build.sh xd87:custom_jp
         ```
 
+    * id9-:custom_jp  
+        source:~/qmk_firmware/keyboards/id80/ansi/keymaps/custom_jp
+        ```sh
+        cd ~/qmk_firmware
+        util/docker_build.sh id80/ansi:custom_jp
+        ```
+
 2. `~/qmk_firmware`にファームウェアとしてのファイル`*.hex`が出力されるのでそのファイルを対象キーボードにフラッシュする。
 フラッシュの方法については、キーボードの仕様によるので省略する。
