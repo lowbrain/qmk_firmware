@@ -25,7 +25,7 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_DEF] = LAYOUT(
-        KC_ESC,    KC_F1,   KC_F2,   KC_F3,   KC_F4,     KC_F5,   KC_F6,   KC_F7,   KC_F8,     KC_F9,   KC_F10,  KC_F11,  KC_F12,     KC_DEL,    KC_PSCR,
+        KC_ESC,    KC_F1,   KC_F2,   KC_F3,   KC_F4,     KC_F5,   KC_F6,   KC_F7,   KC_F8,     KC_F9,   KC_F10,  KC_F11,  KC_F12,    KC_PSCR,    KC_DEL,
         JU_GRV,  KC_1,    JU_2,    KC_3,    KC_4,    KC_5,    JU_6,    JU_7,    JU_8,    JU_9,    JU_0,    JU_MINS, JU_EQL,  KC_BSPC,            KC_HOME,
         KC_TAB,      KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    JU_LBRC, JU_RBRC, JU_BSLS,        KC_END,
         JU_CAPS,       KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    JU_SCLN, JU_QUOT, KC_ENT,
@@ -33,7 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LCTL,   KC_LGUI,   KC_LALT,                       KC_SPC,                              LT(_FN0, KC_APP), KC_RCTL,   KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [_FN0] = LAYOUT(
-        RESET,   MO(_FN1), MO(_FN2), MO(_FN3), MO(_FN4), _______, _______, _______, _______,   _______, _______, _______, _______,   KC_INS,     KC_SLCK,
+        RESET,   MO(_FN1), MO(_FN2), MO(_FN3), MO(_FN4), _______, _______, _______, _______,   _______, _______, _______, _______,   KC_SLCK,    KC_INS,
         _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,            KC_PGUP,
         _______,     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,        KC_PGDN,
         _______,       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
