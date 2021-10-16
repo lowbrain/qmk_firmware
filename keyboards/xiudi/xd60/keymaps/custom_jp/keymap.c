@@ -51,10 +51,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   bool continue_process = process_record_user_jtu(keycode, record);
   if (continue_process == false) {
     return false;
-  } else if (keycode == KC_ESC && (keyboard_report->mods & MOD_BIT(KC_LALT))) {
-    register_code(KC_GRV);
-    unregister_code(KC_GRV);
-    return false;
   }
   return true;
 }
@@ -119,4 +115,13 @@ void mo_reset(qk_tap_dance_state_t *state, void *user_data) {
 // 各タップダンスキーコードの `ACTION_TAP_DANCE_FN_ADVANCED()` を定義し、`finished` と `reset` 関数を渡します
 qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_MO] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, mo_finished, mo_reset)
+};
+
+// OVERRIDE "ALT + ESC" = KC_ZKHK
+const key_override_t zkhk_key_override = ko_make_basic(MOD_MASK_ALT, KC_ESC, KC_GRV);
+
+// This globally defines all key overrides to be used
+const key_override_t **key_overrides = (const key_override_t *[]){
+    &zkhk_key_override,
+    NULL // Null terminate the array of overrides!
 };

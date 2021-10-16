@@ -64,21 +64,21 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
         util/docker_build.sh ymd75/rev2:custom_jp
         ```
 
-    * xd60/rev3:custom_jp  
-        source:~/qmk_firmware/keyboards/xd60/keymaps/custom_jp
+    * xiudi/xd60/rev3:custom_jp  
+        source:~/qmk_firmware/keyboards/xiudi/xd60/keymaps/custom_jp
         ```sh
         cd ~/qmk_firmware
-        util/docker_build.sh xd60/rev3:custom_jp
+        util/docker_build.sh xiudi/xd60/rev3:custom_jp
         ```
 
-    * xd87:custom_jp  
-        source:~/qmk_firmware/keyboards/xd87/keymaps/custom_jp
+    * xiudi/xd87:custom_jp  
+        source:~/qmk_firmware/keyboards/xiudi/xd87/keymaps/custom_jp
         ```sh
         cd ~/qmk_firmware
-        util/docker_build.sh xd87:custom_jp
+        util/docker_build.sh xiudi/xd87:custom_jp
         ```
 
-    * id9-:custom_jp  
+    * id80:custom_jp  
         source:~/qmk_firmware/keyboards/id80/ansi/keymaps/custom_jp
         ```sh
         cd ~/qmk_firmware

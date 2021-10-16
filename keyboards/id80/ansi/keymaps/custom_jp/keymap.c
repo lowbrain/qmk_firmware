@@ -81,3 +81,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
+
+// OVERRIDE "SHIFT + BSPACE" = DELETE
+const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPACE, KC_DELETE);
+
+// OVERRIDE "SHIFT + HOME" = PGUP
+const key_override_t home_key_override   = ko_make_basic(MOD_MASK_SHIFT, KC_HOME, KC_PGUP);
+
+// OVERRIDE "SHIFT + END" = PGDN
+const key_override_t end_key_override    = ko_make_basic(MOD_MASK_SHIFT, KC_END, KC_PGDN);
+
+// This globally defines all key overrides to be used
+const key_override_t **key_overrides = (const key_override_t *[]){
+    &delete_key_override,
+    &home_key_override,
+    &end_key_override,
+    NULL // Null terminate the array of overrides!
+};
