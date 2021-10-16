@@ -29,12 +29,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         JU_GRV,  KC_1,    JU_2,    KC_3,    KC_4,    KC_5,    JU_6,    JU_7,    JU_8,    JU_9,    JU_0,    JU_MINS, JU_EQL,  KC_BSPC,            KC_HOME,
         KC_TAB,      KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    JU_LBRC, JU_RBRC, JU_BSLS,        KC_END,
         JU_CAPS,       KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    JU_SCLN, JU_QUOT, KC_ENT,
-        KC_LSFT,            KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,          KC_UP,
-        KC_LCTL,   KC_LGUI,   KC_LALT,                       KC_SPC,                              LT(_FN0, KC_APP), KC_RCTL,   KC_LEFT, KC_DOWN, KC_RGHT
+        KC_LSFT,            KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, MO(_FN0),         KC_UP,
+        KC_LCTL,   KC_LGUI,   KC_LALT,                       KC_SPC,                              KC_APP,      KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT
     ),
     [_FN0] = LAYOUT(
         RESET,   MO(_FN1), MO(_FN2), MO(_FN3), MO(_FN4), _______, _______, _______, _______,   _______, _______, _______, _______,   KC_SLCK,    KC_INS,
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,            KC_PGUP,
+        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  KC_DEL,            KC_PGUP,
         _______,     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,        KC_PGDN,
         _______,       _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
         _______,            _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,        KC_MS_WH_UP,
@@ -81,20 +81,3 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   }
   return true;
 }
-
-// OVERRIDE "SHIFT + BSPACE" = DELETE
-const key_override_t delete_key_override = ko_make_basic(MOD_MASK_SHIFT, KC_BSPACE, KC_DELETE);
-
-// OVERRIDE "SHIFT + HOME" = PGUP
-const key_override_t home_key_override   = ko_make_basic(MOD_MASK_SHIFT, KC_HOME, KC_PGUP);
-
-// OVERRIDE "SHIFT + END" = PGDN
-const key_override_t end_key_override    = ko_make_basic(MOD_MASK_SHIFT, KC_END, KC_PGDN);
-
-// This globally defines all key overrides to be used
-const key_override_t **key_overrides = (const key_override_t *[]){
-    &delete_key_override,
-    &home_key_override,
-    &end_key_override,
-    NULL // Null terminate the array of overrides!
-};
