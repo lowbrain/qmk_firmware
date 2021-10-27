@@ -88,6 +88,7 @@ void mo_finished(qk_tap_dance_state_t *state, void *user_data) {
             layer_on(_FL);
             break;
         case DOUBLE_TAP:
+            register_code16(KC_ZKHK);
             break;
         case DOUBLE_HOLD:
             layer_on(_FL);
@@ -104,6 +105,7 @@ void mo_reset(qk_tap_dance_state_t *state, void *user_data) {
             layer_off(_FL);
             break;
         case DOUBLE_TAP:
+            unregister_code16(KC_ZKHK);
             break;
         case DOUBLE_HOLD:
             layer_off(_FL);
@@ -117,11 +119,11 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_MO] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, mo_finished, mo_reset)
 };
 
-// OVERRIDE "ALT + ESC" = KC_ZKHK
-const key_override_t zkhk_key_override = ko_make_basic(MOD_MASK_ALT, KC_ESC, KC_GRV);
+// // OVERRIDE "ALT + ESC" = KC_ZKHK
+// const key_override_t zkhk_key_override = ko_make_basic(MOD_MASK_ALT, KC_ESC, KC_GRV);
 
-// This globally defines all key overrides to be used
-const key_override_t **key_overrides = (const key_override_t *[]){
-    &zkhk_key_override,
-    NULL // Null terminate the array of overrides!
-};
+// // This globally defines all key overrides to be used
+// const key_override_t **key_overrides = (const key_override_t *[]){
+//     &zkhk_key_override,
+//     NULL // Null terminate the array of overrides!
+// };
