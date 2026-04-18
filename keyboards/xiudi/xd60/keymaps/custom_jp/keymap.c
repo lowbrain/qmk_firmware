@@ -21,11 +21,11 @@ typedef enum {
 } td_state_t;
 
 // 現在のタップダンスの状態を特定するための関数
-uint8_t cur_dance(qk_tap_dance_state_t *state);
+uint8_t cur_dance(tap_dance_state_t *state);
 
 // それぞれのタップダンスキーコードに適用する `finished` と `reset` 関数
-void capsl1_finished(qk_tap_dance_state_t *state, void *user_data);
-void capsl1_reset(qk_tap_dance_state_t *state, void *user_data);
+void capsl1_finished(tap_dance_state_t *state, void *user_data);
+void capsl1_reset(tap_dance_state_t *state, void *user_data);
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Base Layer
@@ -44,7 +44,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 		_______,   _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,  KC_DEL,  _______,
 		_______,   _______,          _______,                   _______,                            _______, _______, _______, _______
 	)
-
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -59,7 +58,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 static td_state_t td_state;
 
 // 返却するタップダンス状態を特定します
-uint8_t cur_dance(qk_tap_dance_state_t *state) {
+uint8_t cur_dance(tap_dance_state_t *state) {
     if (state->count == 1) {
         if (state->interrupted || !state->pressed) {
             return SINGLE_TAP;
@@ -78,7 +77,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state) {
 }
 
 //--- TD_MO ---------------------------------------------------------------
-void mo_finished(qk_tap_dance_state_t *state, void *user_data) {
+void mo_finished(tap_dance_state_t *state, void *user_data) {
     td_state = cur_dance(state);
     switch (td_state) {
         case SINGLE_TAP:
@@ -88,7 +87,7 @@ void mo_finished(qk_tap_dance_state_t *state, void *user_data) {
             layer_on(_FL);
             break;
         case DOUBLE_TAP:
-            register_code16(KC_ZKHK);
+            register_code16(A(KC_GRV));
             break;
         case DOUBLE_HOLD:
             layer_on(_FL);
@@ -96,7 +95,7 @@ void mo_finished(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void mo_reset(qk_tap_dance_state_t *state, void *user_data) {
+void mo_reset(tap_dance_state_t *state, void *user_data) {
     switch (td_state) {
         case SINGLE_TAP:
             unregister_code16(S(KC_CAPS));
@@ -105,7 +104,7 @@ void mo_reset(qk_tap_dance_state_t *state, void *user_data) {
             layer_off(_FL);
             break;
         case DOUBLE_TAP:
-            unregister_code16(KC_ZKHK);
+            unregister_code16(A(KC_GRV));
             break;
         case DOUBLE_HOLD:
             layer_off(_FL);
@@ -115,15 +114,6 @@ void mo_reset(qk_tap_dance_state_t *state, void *user_data) {
 //------------------------------------------------------------------------------
 
 // 各タップダンスキーコードの `ACTION_TAP_DANCE_FN_ADVANCED()` を定義し、`finished` と `reset` 関数を渡します
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [TD_MO] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, mo_finished, mo_reset)
 };
-
-// // OVERRIDE "ALT + ESC" = KC_ZKHK
-// const key_override_t zkhk_key_override = ko_make_basic(MOD_MASK_ALT, KC_ESC, KC_GRV);
-
-// // This globally defines all key overrides to be used
-// const key_override_t **key_overrides = (const key_override_t *[]){
-//     &zkhk_key_override,
-//     NULL // Null terminate the array of overrides!
-// };

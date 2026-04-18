@@ -57,32 +57,25 @@ QMK is developed and maintained by Jack Humbert of OLKB with contributions from 
 1. `WLS2 Ubuntu-20.04`のコンソールにて以下コマンドを実行  
 （以下ユーザホームディレクトリを作業場所とした例）
 
-    * ymd75/rev2:custom_jp  
-        source:~/qmk_firmware/keyboards/ymd75/keymaps/custom_jp
-        ```sh
-        cd ~/qmk_firmware
-        util/docker_build.sh ymd75/rev2:custom_jp
-        ```
-
     * xiudi/xd60/rev3:custom_jp  
         source:~/qmk_firmware/keyboards/xiudi/xd60/keymaps/custom_jp
         ```sh
         cd ~/qmk_firmware
-        util/docker_build.sh xiudi/xd60/rev3:custom_jp
+        SKIP_FLASHING_SUPPORT=1 util/docker_build.sh xiudi/xd60/rev3:custom_jp
         ```
 
     * xiudi/xd87:custom_jp  
         source:~/qmk_firmware/keyboards/xiudi/xd87/keymaps/custom_jp
         ```sh
         cd ~/qmk_firmware
-        util/docker_build.sh xiudi/xd87:custom_jp
+        SKIP_FLASHING_SUPPORT=1 util/docker_build.sh xiudi/xd87:custom_jp
         ```
 
     * id80:custom_jp  
         source:~/qmk_firmware/keyboards/id80/ansi/keymaps/custom_jp
         ```sh
         cd ~/qmk_firmware
-        util/docker_build.sh id80/ansi:custom_jp
+        SKIP_FLASHING_SUPPORT=1 util/docker_build.sh idobao/id80/v2/ansi:custom_jp
         ```
 
 2. `~/qmk_firmware`にファームウェアとしてのファイル`*.hex`が出力されるのでそのファイルを対象キーボードにフラッシュする。

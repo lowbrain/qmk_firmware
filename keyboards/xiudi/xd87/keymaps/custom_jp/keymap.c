@@ -28,34 +28,34 @@ typedef enum {
 } td_state_t;
 
 // 現在のタップダンスの状態を特定するための関数
-uint8_t cur_dance(qk_tap_dance_state_t *state);
+uint8_t cur_dance(tap_dance_state_t *state);
 
 // それぞれのタップダンスキーコードに適用する `finished` と `reset` 関数
-void capsl1_finished(qk_tap_dance_state_t *state, void *user_data);
-void capsl1_reset(qk_tap_dance_state_t *state, void *user_data);
+void capsl1_finished(tap_dance_state_t *state, void *user_data);
+void capsl1_reset(tap_dance_state_t *state, void *user_data);
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [0] = LAYOUT_tkl_ansi(
-      KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,                  KC_PSCR, KC_SLCK, KC_PAUS,
+      KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,                  KC_PSCR, KC_SCRL, KC_PAUS,
+      KC_GRV,  KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,        KC_INS,  KC_HOME, KC_PGUP,
+      KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,        KC_DEL,  KC_END,  KC_PGDN,
+      KC_CAPS,          KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT,
+      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,                   KC_RSFT,                 KC_UP,
+      KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                                      KC_RALT, MO(2),   KC_APP,  KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT   ),
+  [1] = LAYOUT_tkl_ansi(
+      KC_ESC,  KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,                  KC_PSCR, KC_SCRL, KC_PAUS,
       JU_GRV,  KC_1,    JU_2,    KC_3,    KC_4,    KC_5,    JU_6,    JU_7,    JU_8,    JU_9,    JU_0,    JU_MINS, JU_EQL,  KC_BSPC,        KC_INS,  KC_HOME, KC_PGUP,
       KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    JU_LBRC, JU_RBRC, JU_BSLS,        KC_DEL,  KC_END,  KC_PGDN,
       TD(TD_CAPS_L1),   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    JU_SCLN, JU_QUOT, KC_ENT,
       KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,                   KC_RSFT,                 KC_UP,
-      KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                                      KC_RALT, MO(1),   KC_APP,  KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT   ),
-  [1] = LAYOUT_tkl_ansi(
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, RGB_TOG, RGB_MOD, RGB_VAI, RGB_HUI,                 KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,         KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_UP,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PSCR, KC_HOME, KC_END,  KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_NO,   KC_LEFT, KC_DOWN, KC_RGHT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_PGUP, KC_PGDN,          KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_INS,  KC_DEL,                    KC_TRNS,                 KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS,                                     KC_TRNS, KC_NO,   KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS   ),
+      KC_LCTL, KC_LGUI, KC_LALT,                   KC_SPC,                                      KC_RALT, MO(2),   KC_APP,  KC_RCTL,        KC_LEFT, KC_DOWN, KC_RGHT   ),
   [2] = LAYOUT_tkl_ansi(
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                 KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
-      KC_NO,   KC_TRNS, KC_TRNS, KC_RGHT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,          KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS,                 KC_TRNS,
-      KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS,                                     KC_TRNS, KC_NO,   KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS   )
+      QK_BOOT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, UG_HUEU, UG_HUED, UG_SATU, UG_SATD, UG_VALU, UG_VALD, UG_SPDU, UG_SPDD,                 UG_TOGG, UG_NEXT, UG_PREV,
+      KC_TRNS, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,         KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_TRNS, KC_TRNS, KC_UP,   KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, PDF(0),  KC_TRNS, KC_TRNS, KC_PSCR, KC_HOME, KC_END,  MS_BTN3,        KC_TRNS, KC_TRNS, KC_TRNS,
+      KC_NO,   KC_LEFT, KC_DOWN, KC_RGHT, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, PDF(1),  KC_TRNS, KC_PGUP, KC_PGDN,          MS_BTN1,
+      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_INS,  KC_DEL,                    MS_BTN2,                 MS_UP,
+      KC_TRNS, KC_TRNS, KC_TRNS,                   KC_TRNS,                                     KC_TRNS, KC_NO,   KC_TRNS, KC_TRNS,        MS_LEFT, MS_DOWN, MS_RGHT   ),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -82,7 +82,7 @@ void led_set_user(uint8_t usb_led) {
 static td_state_t td_state;
 
 // 返却するタップダンス状態を特定します
-uint8_t cur_dance(qk_tap_dance_state_t *state) {
+uint8_t cur_dance(tap_dance_state_t *state) {
     if (state->count == 1) {
         if (state->interrupted || !state->pressed) {
             return SINGLE_TAP;
@@ -96,7 +96,7 @@ uint8_t cur_dance(qk_tap_dance_state_t *state) {
 }
 
 //--- TD_CAPS_L1 ---------------------------------------------------------------
-void capsl1_finished(qk_tap_dance_state_t *state, void *user_data) {
+void capsl1_finished(tap_dance_state_t *state, void *user_data) {
     td_state = cur_dance(state);
     switch (td_state) {
         case SINGLE_TAP:
@@ -108,7 +108,7 @@ void capsl1_finished(qk_tap_dance_state_t *state, void *user_data) {
     }
 }
 
-void capsl1_reset(qk_tap_dance_state_t *state, void *user_data) {
+void capsl1_reset(tap_dance_state_t *state, void *user_data) {
     switch (td_state) {
         case SINGLE_TAP:
             unregister_code16(S(KC_CAPS));
@@ -121,6 +121,6 @@ void capsl1_reset(qk_tap_dance_state_t *state, void *user_data) {
 //------------------------------------------------------------------------------
 
 // 各タップダンスキーコードの `ACTION_TAP_DANCE_FN_ADVANCED()` を定義し、`finished` と `reset` 関数を渡します
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [TD_CAPS_L1] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, capsl1_finished, capsl1_reset)
 };
