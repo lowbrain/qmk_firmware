@@ -3,8 +3,10 @@
 
 // Layer
 enum keyboard_layers {
-  _BL = 0,  // Base Layer
-  _FL       // Function Layer
+  _US = 0,  // Base Layer(US)
+  _JP,      // Base Layer(JP)
+  _USF,     // Function Layer
+  _JPF      // Function Layer
 };
 
 // タップダンスのキーコード
@@ -29,20 +31,34 @@ void capsl1_reset(tap_dance_state_t *state, void *user_data);
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // Base Layer
-	[_BL] = LAYOUT_60_ansi(
+    [_US] = LAYOUT_60_ansi(
+		KC_ESC,    KC_1,    KC_2,    KC_3,    KC_4,    KC_5,    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_MINS, KC_EQL,  KC_BSPC,
+		KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_LBRC, KC_RBRC, KC_BSLS,
+	    KC_CAPS,   KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT, KC_ENT,
+		KC_LSFT,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
+		KC_LCTL,   KC_LGUI, KC_LALT,                            KC_SPC,                             KC_RALT, MO(_USF), KC_APP,  KC_RCTL
+	),
+    [_JP] = LAYOUT_60_ansi(
 		KC_ESC,    KC_1,    JU_2,    KC_3,    KC_4,    KC_5,    JU_6,    JU_7,    JU_8,    JU_9,    JU_0,    JU_MINS, JU_EQL,  KC_BSPC,
 		KC_TAB,    KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    JU_LBRC, JU_RBRC, JU_BSLS,
 	    TD(TD_MO), KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    JU_SCLN, JU_QUOT, KC_ENT,
 		KC_LSFT,   KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
-		KC_LCTL,   KC_LGUI, KC_LALT,                            KC_SPC,                             KC_RALT, MO(_FL), KC_APP,  KC_RCTL
+		KC_LCTL,   KC_LGUI, KC_LALT,                            KC_SPC,                             KC_RALT, MO(_JPF), KC_APP,  KC_RCTL
 	),
     // Function Layer
-	[_FL] = LAYOUT_60_ansi(
-		JU_GRV,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,  KC_DEL,
-		_______,   _______, KC_UP,   _______, _______, _______, _______, _______, _______, _______, KC_PSCR, KC_HOME, KC_END,  _______,
-		_______,   KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, _______, _______, _______, KC_PGUP, KC_PGDN, _______,
-		_______,   _______, _______, _______, _______, _______, _______, _______, _______, KC_INS,  KC_DEL,  _______,
-		_______,   _______,          _______,                   _______,                            _______, _______, _______, _______
+	[_USF] = LAYOUT_60_ansi(
+		KC_GRV,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,    KC_F10,  KC_F11,  KC_F12,  KC_DEL,
+		_______,   _______, KC_UP,   _______, _______, _______, _______, PDF(_US), _______, _______, KC_PSCR, KC_HOME, KC_END,  _______,
+		_______,   KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, PDF(_JP), _______, _______, KC_PGUP, KC_PGDN, _______,
+		_______,   _______, _______, _______, _______, _______, _______, _______,  _______, KC_INS,  KC_DEL,  _______,
+		_______,   _______,          _______,                   _______,                             _______, _______, _______, _______
+	),
+	[_JPF] = LAYOUT_60_ansi(
+		JU_GRV,    KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,    KC_F10,  KC_F11,  KC_F12,  KC_DEL,
+		_______,   _______, KC_UP,   _______, _______, _______, _______, PDF(_US), _______, _______, KC_PSCR, KC_HOME, KC_END,  _______,
+		_______,   KC_LEFT, KC_DOWN, KC_RGHT, _______, _______, _______, PDF(_JP), _______, _______, KC_PGUP, KC_PGDN, _______,
+		_______,   _______, _______, _______, _______, _______, _______, _______,  _______, KC_INS,  KC_DEL,  _______,
+		_______,   _______,          _______,                   _______,                             _______, _______, _______, _______
 	)
 };
 
@@ -84,13 +100,13 @@ void mo_finished(tap_dance_state_t *state, void *user_data) {
             register_code16(S(KC_CAPS));
             break;
         case SINGLE_HOLD:
-            layer_on(_FL);
+            layer_on(_JPF);
             break;
         case DOUBLE_TAP:
             register_code16(A(KC_GRV));
             break;
         case DOUBLE_HOLD:
-            layer_on(_FL);
+            layer_on(_JPF);
             break;
     }
 }
@@ -101,13 +117,13 @@ void mo_reset(tap_dance_state_t *state, void *user_data) {
             unregister_code16(S(KC_CAPS));
             break;
         case SINGLE_HOLD:
-            layer_off(_FL);
+            layer_off(_JPF);
             break;
         case DOUBLE_TAP:
             unregister_code16(A(KC_GRV));
             break;
         case DOUBLE_HOLD:
-            layer_off(_FL);
+            layer_off(_JPF);
             break;
     }
 }
